@@ -42,3 +42,78 @@ const conferenceTickets = 50 #constant
 ```
 
 #### Formatting Output
+```golang
+    var conferenceName string = "GopherCon"
+	const conferenceTickets = 50
+	var remainingTickets = 50
+	fmt.Printf("Welcome to %v booking application\n", conferenceName)
+	fmt.Println("Welcome to", conferenceName)
+	fmt.Printf("Number of tickets left: %v and number of tickets remaining%v\n", conferenceTickets, remainingTickets)
+	fmt.Println("Number of tickets remaining:", remainingTickets)
+
+    //%v: value, %T : type
+```
+#### Data types
+- phải khai báo với go compiler, có thể không khai báo bằng cách cung cấp giá trị
+- int8, int16, int32, int64, uint8, 16, 32, 64
+```go
+    //os.Stdin là một đối tượng kiểu *os.File đại diện cho đầu vào tiêu chuẩn (standard input - stdin) của hệ thống.
+	//Nó được sử dụng để nhận dữ liệu nhập từ bàn phím hoặc từ một file/kênh nhập khác. 
+	reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin)
+
+	var lastName string = "Nhân"
+	const middleName string = "Ngọc"
+	var numberTicket int = 1
+	firstName := "Trần" // một cách gán giá trị kiểu khác
+	
+	var fullName string
+	// fmt.Scanln(&fullName)
+
+	fmt.Println("Nhập nhiều dòng (ấn Enter trên dòng trống để dừng):")
+	var description string
+	for scanner.Scan(){
+		line := scanner.Text();
+		if line == ""{
+			break
+		}
+		description += line + "\n"
+	}
+	//nhập một dòng
+	fullName, _ = reader.ReadString('\r') // \n
+	fmt.Println(fullName)
+	fmt.Printf("%T\n", numberTicket)
+	fmt.Printf("%v %v %v",firstName, middleName, lastName)
+```
+#### logic
+```go
+    var a = 5
+	a %= 5
+	a--
+	a -= 51
+```
+#### array
+```go
+    // var variable_name [length]type
+	var numbers = [50]int{1,23,4} // var numbers [50]int
+	numbers[2] = 3
+	length := len(numbers)
+	fmt.Println(numbers)
+	fmt.Println(length)
+	//get type of array
+	fmt.Printf("%T\n", numbers)
+```
+
+#### slices
+- không cần chỉ định size
+- index, resize khi cần thiết
+```go
+    //var numbers []int
+	//var numbers = []int{}
+	numbers := []int{}
+
+	numbers = append(numbers, 1)
+
+	fmt.Println(numbers)
+	fmt.Printf("%v\n", numbers)
+```
