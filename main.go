@@ -1,19 +1,22 @@
 package main
 
-import (
-	"fmt"
-
+import ("fmt"
+		"time"
+		"sync"
 )
 
+func sendTicket(userName string){
+	time.Sleep(10 * time.Second)
+	fmt.Printf("Send ticket %v", userName)
+	wg.Done() // Decrease counter by 1
+}
 
+var wg = sync.WaitGroup{}
 func main(){
-	//var numbers []int
-	//var numbers = []int{}
-	numbers := []int{}
+	wg.Add(2) // Add 2 goroutines to wait group
+	go sendTicket("Nhan")
+	fmt.Println("Main function")
+	go sendTicket("Hai")
 
-	numbers = append(numbers, 1)
-
-	fmt.Println(numbers)
-	fmt.Printf("%v\n", numbers)
-	
-} 
+	wg.Wait() // block cho đến khi counter = 0
+}
